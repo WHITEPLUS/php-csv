@@ -76,20 +76,10 @@ class CsvFile extends Csv {
                 $this->_setLineSeparator("\x0D\x00" . $this->_getLineSeparator());
                 $line = substr($line, 0, strlen($line) - 2);
             }
-            if ($this->_rowCounter == 0) {
-                $line = preg_replace("/^\xFF\xFE/", "", $line);
-            }
-
             return $line;
+
         }
-
-        $line = fgets($this->_getFilePointer());
-
-        if ($this->_rowCounter == 0) {
-            $line = preg_replace("/^\xEF\xBB\xBF/", "", $line);
-        }
-
-        return $line;
+        return fgets($this->_getFilePointer());
     }
 
     protected function _getFilePointer($mode = 'r')
