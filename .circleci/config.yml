@@ -22,19 +22,19 @@ commands:
           command: vendor/bin/phpunit
 
 jobs:
-  php72-test:
+  php72_build_test:
     executor: php72
     steps:
       - checkout
       - deps
       - test
-  php73-test:
+  php73_build_test:
     executor: php73
     steps:
       - checkout
       - deps
       - test
-  php74-test:
+  php74_build_test:
     executor: php74
     steps:
       - checkout
@@ -42,8 +42,8 @@ jobs:
       - test
 
 workflows:
-  test:
+  build_test:
     jobs:
-      - php72-test
-      - php73-test
-      - php74-test
+      - php72_build_test
+      - php73_build_test
+      - php74_build_test
